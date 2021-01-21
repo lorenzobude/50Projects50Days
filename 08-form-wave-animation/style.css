@@ -9,13 +9,21 @@ body {
     background: #01579B;
 }
 
-form {
+.form {
     color: white;
     background: rgba(0, 0, 0, .3);
     padding: 2em;
     border-radius: 5px;
-    width: 400px;
+    width: 280px;
 }
+
+    @media (min-width: 425px) {
+
+        .form {
+            width: 350px;
+        }
+
+    }
 
 h1 {
     font-size: 1.5rem;
@@ -36,8 +44,13 @@ label {
 }
 
 label span {
-    transform: translateY(2em);
-    transition: .3s;
+    display: inline-block;
+    transform: translateY(1.5em);
+    transition: .3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+label span.up {
+    transform: translateY(0);
 }
 
 input {

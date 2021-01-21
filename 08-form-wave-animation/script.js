@@ -1,21 +1,35 @@
-// document.querySelector('input').previousElementSibling.querySelector('label')
-
+const labels = document.querySelectorAll('label')
 const fields = document.querySelectorAll('input')
 
-for (let field of fields) {
-  const chars = field.previousElementSibling.querySelector('label').innerText
+labels.forEach(label => {
 
-  field.addEventListener('click', () => {
-    field.previousElementSibling.querySelector('label').innerHTML = ''
-    
-    for (let i in chars) {
-      field.previousElementSibling.querySelector('label').innerHTML += `<span>${chars.split('')[i]}</span>`
+  const chars = label.innerText
+  
+  label.innerText = '' 
+   
+  for (let char of chars) {
+    label.innerHTML += `<span>${char.split('')}</span>`
+  }
+
+})
+
+fields.forEach(field => {
+
+  const wave = (cssClass) => {
+    const spans = field.previousElementSibling.querySelectorAll('span')
+
+    for (let i = 0; i < spans.length; i++) {
+      setTimeout(() => {
+        spans[i].className = cssClass
+      }, 25 * i)
     }
-  })
+  }
+
+  field.addEventListener('click', () => wave('up'))
 
   window.addEventListener('click', e => {
-      if (!field.contains(e.target))
-        field.innerHTML = chars
-    }
-  )
-}
+    if (!field.contains(e.target))
+      wave('')
+  })
+
+})
